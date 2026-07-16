@@ -1,0 +1,13 @@
+<main class="container">
+  <h1>FinanceReconAI</h1>
+  <p class="notice">Uploads are parsed in memory only. No source file is created in Dataiku folders, datasets, or managed storage.</p>
+  <section class="upload-grid">
+    <label><strong>LEFT documents</strong><input id="left-files" type="file" multiple accept=".csv,.xlsx,.xlsm,.xls,.docx,.pdf"></label>
+    <label><strong>RIGHT documents</strong><input id="right-files" type="file" multiple accept=".csv,.xlsx,.xlsm,.xls,.docx,.pdf"></label>
+  </section>
+  <p id="message" role="status"></p>
+  <div class="actions"><button id="reconcile">Reconcile</button><button id="clear" class="secondary">Clear session data</button><select id="format"><option>xlsx</option><option>csv</option><option>json</option></select><button id="export" class="secondary">Export</button></div>
+  <section><h2>Left records</h2><div id="left-table"></div></section>
+  <section><h2>Right records</h2><div id="right-table"></div></section>
+  <section><h2>Reconciliation</h2><div id="result-table"></div></section>
+</main>
