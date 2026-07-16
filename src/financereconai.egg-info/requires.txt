@@ -1,0 +1,16 @@
+dash>=2.18
+plotly>=5.24
+pandas>=2.2
+openpyxl>=3.1
+xlrd>=2.0
+python-docx>=1.1
+pdfplumber>=0.11
+PyYAML>=6.0
+rapidfuzz>=3.9
+scipy>=1.14
+
+[dev]
+pytest>=8.3
+hypothesis>=6.112
+mypy>=1.11
+ruff>=0.6

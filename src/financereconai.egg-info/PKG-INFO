@@ -1,0 +1,19 @@
+Metadata-Version: 2.4
+Name: financereconai
+Version: 1.0.0
+Requires-Python: >=3.12
+Requires-Dist: dash>=2.18
+Requires-Dist: plotly>=5.24
+Requires-Dist: pandas>=2.2
+Requires-Dist: openpyxl>=3.1
+Requires-Dist: xlrd>=2.0
+Requires-Dist: python-docx>=1.1
+Requires-Dist: pdfplumber>=0.11
+Requires-Dist: PyYAML>=6.0
+Requires-Dist: rapidfuzz>=3.9
+Requires-Dist: scipy>=1.14
+Provides-Extra: dev
+Requires-Dist: pytest>=8.3; extra == "dev"
+Requires-Dist: hypothesis>=6.112; extra == "dev"
+Requires-Dist: mypy>=1.11; extra == "dev"
+Requires-Dist: ruff>=0.6; extra == "dev"
