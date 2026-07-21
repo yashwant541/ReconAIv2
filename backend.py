@@ -26,6 +26,15 @@ from financial_reconciliation.reference_library import ReferenceLibrary
 
 SESSION_TTL_SECONDS = 60 * 60
 MAX_UPLOAD_MB = 100
+# ---------------------------------------------------------------------------
+# Reference-library storage.
+#   Default: reads env (FINRECON_DATAIKU_FOLDER, else local FINRECON_LIBRARY).
+#   To hardcode your Dataiku managed folder instead, replace the line below with
+#   your folder's name or ID (the 8-char code in the folder URL / settings):
+#
+#       _LIBRARY = ReferenceLibrary.for_dataiku("YOUR_FOLDER_ID")
+#
+# ---------------------------------------------------------------------------
 _LIBRARY = ReferenceLibrary.from_config()
 _GLOB = {"sig": None, "onto": None}
 
