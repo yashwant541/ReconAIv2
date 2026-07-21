@@ -57,12 +57,19 @@ class _LocalStore:
 
 
 class _DataikuStore:
-    """Storage backed by a Dataiku managed folder (any backend: local/S3/GCS…)."""
+    """Storage backed by a Dataiku managed folder (any backend: local/S3/GCS…).
 
-    def __init__(self, folder_id: str, project_key: Optional[str] = None) -> None:
-        import dataiku  # imported lazily so non-Dataiku envs still load this module
-        self.folder = (dataiku.Folder(folder_id, project_key=project_key)
-                       if project_key else dataiku.Folder(folder_id))
+    Accepts either the folder name/ID (a string) or an already-constructed
+    dataiku.Folder handle.
+    """
+
+    def __init__(self, folder_or_id, project_key: Optional[str] = None) -> None:
+        if hasattr(folder_or_id, "list_paths_in_partition"):
+            self.folder = folder_or_id                     # a dataiku.Folder handle
+        else:
+            import dataiku  # imported lazily so non-Dataiku envs still load this module
+            self.folder = (dataiku.Folder(folder_or_id, project_key=project_key)
+                           if project_key else dataiku.Folder(folder_or_id))
 
     @staticmethod
     def _p(name: str) -> str:
@@ -98,6 +105,16 @@ class ReferenceLibrary:
     def __init__(self, store) -> None:
         # Accept a store object, or a path string for backward compatibility.
         self._store = _LocalStore(store) if isinstance(store, str) else store
+
+    @classmethod
+    def for_dataiku(cls, folder_or_id, project_key: Optional[str] = None
+                    ) -> "ReferenceLibrary":
+        """Use a Dataiku managed folder.
+
+            ReferenceLibrary.for_dataiku("aBcD1234")          # folder ID or name
+            ReferenceLibrary.for_dataiku(dataiku.Folder("aBcD1234"))  # a handle
+        """
+        return cls(_DataikuStore(folder_or_id, project_key))
 
     @classmethod
     def from_config(cls) -> "ReferenceLibrary":
