@@ -1,0 +1,4 @@
+import financial_reconciliation.extraction.pdf_financial as m
+print("loaded from:", m.__file__)
+print("BUILD:", "NEW" if hasattr(m, "_is_wrap_of") else "OLD — library not updated")
+import pdfplumber; print("pdfplumber:", pdfplumber.__version__)
